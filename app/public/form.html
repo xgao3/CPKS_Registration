@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap source-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+
+  </head>
+
+  <style>
+  
+    body {
+      padding: 50px;
+    }
+
+    .lft-sd {
+      text-align: center;
+      padding: 20px;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .rgt-sd {
+      padding: 40px;
+      font-family: 'Raleway', sans-serif;
+      background-color: aliceblue;
+      border-radius: 8px;
+    }
+
+    #button {
+      color: white;
+      text-align: center;
+      margin: 4px 0;
+      border-radius: 3px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background-color: #006990;
+      cursor: pointer;
+      border: 1px solid #003d79;    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    input.form-control {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.10);
+    }
+
+    a:visited {
+      color: #0095d3;
+    }
+
+    a:hover {
+      color: #f38b00;
+    }
+
+    a:hover, a:visited, a:link, a:active
+      {
+          text-decoration: none;
+      }
+
+      @media (max-width: 1000px) {
+
+        #moreinfo {
+          display: none;
+        }
+
+        .col-sm-6 {
+          flex: 0 0 100%;
+          max-width: 100% !important;
+        }
+
+        .title {
+          font-size: 3.5rem !important;
+        }
+
+        .summary{
+          font-size: 13px !important;
+        }
+
+        #lg-im {
+          width: 150px !important;
+        }
+      }
+
+      @media (max-width: 500px) {
+       
+        .title {
+          font-size: 2.5rem !important;
+        }
+      } 
+  </style>
+
+<body>
+
+
+    <div class="row">
+
+        <div class="col-sm-6 lft-sd">
+            <img id="lg-im" src="images/vmware-logo.jpg" alt="vmware" style="width:200px; margin-bottom: 20px"/>
+            <p class="title" style="margin-bottom: 20px; font-family: 'Staatliches', cursive !important; font-size: 46px"><b>CLUSTER-SIGNUP</b></p>
+            <p class="summary">
+              VMware, Inc., headquartered in the U.S., and its group companies, a part of the Dell Family ("VMware", "we", "us" and "our") are committed 
+              to protecting your privacy. This Privacy Notice ("Notice") describes the privacy practices that applies to our collection, use and 
+              disclosure of personal information when you submit personal information and other information to us. 
+
+              If you have any questions about this Notice, please contact us at privacy@vmware.com.
+
+              If you are resident in the European Economic Area ("EEA"), please also refer to "Your Privacy Rights" and "Additional rights for EEA and certain 
+              other territories" below for additional information that applies to you.
+            </p>
+
+        </div>
+
+      <div class="col-sm-6 rgt-sd">
+        <form action="/user-create" method="POST" id="contact-form">
+          <div class="form-group">
+            <label for="company">Full Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" name="create_full_name" id="full_name" required>
+            <small id="nameHelp" class="form-text text-muted">Ex: John Doe</small>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="create_email" id="email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="position">Position</label>
+            <input type="text" class="form-control" id="position" aria-describedby="positionHelp" placeholder="Enter Position" name="create_position" id="position" required>
+            <small id="positionHelp" class="form-text text-muted">Ex: Regional Director, Client Executive, Sales Specialist</small>
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" class="form-control" id="company" aria-describedby="companyHelp" placeholder="Enter Company" name="create_company" id="company" required>
+            <small id="companyHelp" class="form-text text-muted">Ex: VMware, Adobe, Red Hat</small>
+          </div>
+          <div class="row">
+              <div class="col-sm-9">
+                <button id="button" type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              <div class="col-sm-3" style="font-size: 16px; text-align: center">
+                <a href="#more-here" id="moreinfo">More</a>
+              </div>
+          </div>
+
+      </form>
+      </div>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <hr class="my-4">
+
+    <br>
+
+  <div data-spy="scroll">
+    <ul class="list-unstyled" id="more-here">
+      <li class="media">
+        <i class="far fa-check-circle mr-3"></i>
+        <div class="media-body">
+          <h5 class="mt-0 mb-1" style="font-family: 'Staatliches', cursive !important; font-size: 26px"> <a href="/get-cluster">Already signed up?</a></h5>
+          Skip the sign up step and assign yourself a cluster. 
+        </div>
+      </li>
+      <br>
+      <li class="media">
+        <i class="fas fa-coins mr-3"></i>
+        <div class="media-body">
+          <h5 class="mt-0 mb-1" style="font-family: 'Staatliches', cursive !important; font-size: 26px"><a href="/find-cluster">Find my cluster</a></h5>
+          Use this method to search for your cluster name by using your email.
+        </div>
+      </li>
+      <br>
+      <li class="media">
+        <i class="fa fa-envelope mr-3"></i>
+        <div class="media-body">
+          <h5 class="mt-0 mb-1" style="font-family: 'Staatliches', cursive !important; font-size: 26px"><a href="/find-user">Find user</a></h5>
+          If you think you signed up, use this method to search for yourself by using your email.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+     <!-- JQUERY source-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+     <!-- Bootstrap JS -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

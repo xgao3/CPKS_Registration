@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap source-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Font Awessome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+
+</head>
+
+<style>
+    body {
+        margin: 15px;
+        margin-top: 8%;
+        padding: 30px;
+    }
+ 
+    * {
+        font-family: 'Raleway', sans-serif;
+    }
+
+    .card {
+        border: 1px solid #9e3039;
+        padding: 25px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,61,121, 0.19);
+    }
+
+    input {
+        width: 50%;
+        padding: 5px;
+    }
+
+    #button {
+        width: 30%;
+        font-size: 14px;
+        padding: 8px;
+        border-radius: 3px;
+        background-color: #9e3039;
+        cursor: pointer;
+        color: white;
+    }
+    
+    a:visited {
+      color: #0095d3;
+    }
+
+    a:hover {
+      color: #f38b00;
+    }
+
+    a:hover, a:visited, a:link, a:active
+      {
+          text-decoration: none;
+      }
+
+      @media (max-width: 1000px) {
+
+        #lg-im {
+            display: none;
+        }
+
+
+        #button {
+            width: 100%;
+        }
+        
+      }
+
+      @media (max-width: 600px) {
+
+        .col-sm-6 {
+          flex: 0 0 100%;
+          max-width: 100% !important;
+        }
+
+        #first-lg {
+           width: 100px !important;
+        }
+
+        #button {
+            width: 100%;
+        }
+      }
+
+</style>
+
+<body>
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6 card" style="text-align:center">
+                    <img id="first-lg" src="../images/logo.jpg" alt="vmware" style="width:200px; margin-bottom: 20px">
+                    <h5 style="margin: 10 0; font-family: 'Staatliches', cursive !important; color: #9e3039;">YOU DON'T HAVE ACCESS TO VIEW THIS PAGE</h5>
+                    <br>
+                    <div style="text-align:center">
+                      <a id="button" href="/auth/login" class="btn btn-default">BACK</a>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-sm-3 "></div>
+            </div>
+        </div>
+
+
+     <!-- JQUERY source-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- Bootstrap JS -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
+
+</body>
+</html>

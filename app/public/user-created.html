@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap source-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Font Awessome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+
+<style>
+* {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+#middle{
+  position: absolute;
+  width: 300px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 8px;
+  background-color: rgb(184, 227, 245);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+#button {
+text-align: center;
+margin: 4px 0;
+border: 1px solid white;
+border-radius: 3px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#button:hover {
+    cursor: pointer;
+}
+
+</style>
+
+<body>
+
+    <div id="middle">
+        <p style="margin:0; text-align: center; font-size: 16px;">
+            You've been added our database!
+        </p>
+        <div>
+            <p style="margin:0; text-align: center; font-size: 16px;">
+                Now it's time to get your cluster.
+            </p>
+        </div>
+        <button id="button">Get cluster</button>
+    </div>
+
+    <img src="images/steve.png" style="height:500px; margin: 100px;">
+
+     <!-- JQUERY source-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- custom Javascript -->
+     <script>
+        $('#button').click(function(){
+            window.location.href='/get-cluster';
+        })
+    </script>
+     <!-- Bootstrap JS -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+     
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap source-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Font Awessome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  </head>
+
+  <style>
+      body {
+        margin: 15px;
+        margin-top: 10%;
+        padding: 30px;
+    }
+ 
+    .card {
+        border: 1px solid #006990;
+        padding: 25px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,61,121, 0.19);
+        text-align: center;
+    }
+
+    #button {
+        padding: 8px;
+        width: 20%;
+        text-align: center;
+        margin: 4px 0;
+        border: 1px solid black;
+        color: black;
+        border-radius: 3px;
+        background-color: #003d79;
+        border: 1px solid #006990;
+        color: white;
+    }
+
+    #button:hover {
+        cursor: pointer;
+    }
+
+    @media (max-width: 1000px) {
+        h4 {
+            font-size: 1.3rem !important;
+        }
+
+        p {
+            font-size: 12px !important;
+        }
+
+        .col-sm-6 {
+          flex: 0 0 100%;
+          max-width: 100% !important;
+        }
+
+        #button {
+            width: 100%;
+        }
+      }
+
+  </style>
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class="row">
+                <div class="col-sm-3 "></div>
+                <div class="col-sm-6 card">
+                    <h4 style="text-align:center;">Congratulations you've been assigned a cluster</h4>
+                    <p class="card-text" style="font-size:16px;">Please check your email for your cluster name</p>
+                <div style="text-align:center">
+                <a href="/" class="btn" id="button">Home  <i class="fas fa-home"></i></a>
+                </div>
+                </div>
+                <div class="col-sm-3 "></div>
+            </div>
+
+
+    </div>
+
+     <!-- JQUERY source-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- Bootstrap JS -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+     <!-- Custom JavaScript -->
+     <script>
+
+     </script>
+     
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "cloudpks_onboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.4",
+    "express-mysql-session": "^2.0.1",
+    "express-prom-bundle": "^5.0.2",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.9",
+    "npm": "^6.5.0",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "path": "^0.12.7",
+    "prom-client": "9.1.1",
+    "response-time": "^2.3.2"
+  }
+}
