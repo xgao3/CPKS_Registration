@@ -17,7 +17,6 @@ pipeline {
       steps {
         container('docker'){
           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "echo ${env.dockerHubUser} ${env.dockerHubPassword}"
             sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
             sh 'docker push xiaog/web-workshop:latest'
           }
