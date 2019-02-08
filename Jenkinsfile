@@ -29,7 +29,7 @@ pipeline {
           withCredentials([usernamePassword(credentialsId: 'VCS', usernameVariable: 'orgID', passwordVariable: 'apiToken')]) {
             sh "vke account login -t ${env.orgID} -r ${env.apiToken}"
             sh '''
-                 vke cluster auth setup cluster1010101431
+                 vke cluster merge-kubectl-auth cluster1010101431
 		 kubectl delete deployment vke-app -n web-workshop || true
                  sleep 5
 		 kubectl create -n web-workshop -f deployFiles/temp3.yaml
