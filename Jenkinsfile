@@ -9,7 +9,7 @@ pipeline {
     stage('Docker Build') {
       steps {
         container('docker'){
-          sh 'docker build -t xiaog/web-workshop:latest .'
+          sh 'docker build -t xiaog/vke-cluster-register.v2.latest .'
         }
       }
     }
@@ -18,7 +18,7 @@ pipeline {
         container('docker'){
           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-            sh 'docker push xiaog/web-workshop:latest'
+            sh 'docker push xiaog/vke-cluster-register.v2.latest'
           }
         }
       }
@@ -30,9 +30,9 @@ pipeline {
             sh "vke account login -t ${env.orgID} -r ${env.apiToken}"
             sh '''
                  vke cluster merge-kubectl-auth cluster1010101431
-		 kubectl delete deployment vke-app -n web-workshop || true
+		 kubectl delete deployment vke-app -n vke-app || true
                  sleep 5
-		 kubectl create -n web-workshop -f deployFiles/temp3.yaml
+		 kubectl create -n vke-app -f deployFiles/temp3.yaml
                  echo "Node Server Launched!"
             '''
           }

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: vke-app
-        image: xiaog/vke-cluster-register.v1
+        image: xiaog/vke-cluster-register.v2.latest
         imagePullPolicy: Always 
         env:
           - name: MYSQL_ROOT_PASSWORD
