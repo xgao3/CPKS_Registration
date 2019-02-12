@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: vke-app
+  namespace: vke-app
+  labels:
+    app: vke-app
+    tier: app-tier
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vke-app
+  template:
+    metadata:
+      labels:
+        app: vke-app
+    spec:
+      containers:
+      - name: vke-app
+        image: xiaog/vke-cluster-register.v1
+        imagePullPolicy: Always 
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: password
+          - name: SQL_HOST
+            value: mysql.vke-app.svc.cluster.local
+#            value: seattle.cyi426quvsek.us-east-1.rds.amazonaws.com
+#            value: seattle.ch685hm59sif.ap-southeast-1.rds.amazonaws.com
+          - name: SQL_USER
+            value: root
+          - name: SQL_DB
+            value: seattle
+        ports:
+        - containerPort: 1112
+

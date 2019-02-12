@@ -1,0 +1,70 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: vke-app
+  namespace: vke-app
+  labels:
+    app: vke-app
+    tier: app-tier
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vke-app
+  template:
+    metadata:
+      labels:
+        app: vke-app
+    spec:
+      containers:
+      - name: vke-app
+        image: xiaog/simple_vke_app
+        imagePullPolicy: Always 
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: password
+          - name: SQL_HOST
+            value: seattle.cyi426quvsek.us-east-1.rds.amazonaws.com
+        ports:
+        - containerPort: 1112
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: vke-app-cfg
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vke-app-cfg
+  namespace: vke-app 
+data:
+  config.cfg: |
+    DATABASE_URL = 'mysql'
+    DATABASE_USER = 'seattle'
+    DATABASE_PWD = 'VMware1!'
+    DATABASE = 'seattle'
+    REDIS_HOST = 'redis-server'
+    REDIS_PORT = '6379'
+    LISTEN_PORT = 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vke-svc
+  namespace: vke-app
+  labels:
+    app: vke-svc
+spec:
+  ports:
+    # the port that this service should serve on
+    - port: 1112
+  selector:
+    app: vke-app
+  type: LoadBalancer
+
