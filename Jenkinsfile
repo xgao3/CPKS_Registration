@@ -1,77 +1,43 @@
 pipeline {
   agent {
-    label "jenkins-python"
-  }
-  environment {
-    ORG = 'xgao3'
-    APP_NAME = 'cpks-registration'
-    CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
+    kubernetes {
+        label 'docker-build-pod'
+        yamlFile 'podTemplate/jw-workshop-docker-build.yaml'
+    }
   }
   stages {
-    stage('CI Build and push snapshot') {
-      when {
-        branch 'PR-*'
-      }
-      environment {
-        PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
-        PREVIEW_NAMESPACE = "$APP_NAME-$BRANCH_NAME".toLowerCase()
-        HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
-      }
+    stage('Docker Build') {
       steps {
-        container('python') {
-          sh "python -m unittest"
-          sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
-          sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
-          dir('./charts/preview') {
-            sh "make preview"
-            sh "jx preview --app $APP_NAME --dir ../.."
+        container('docker'){
+          sh 'docker build -t xiaog/vke-cluster-register.v2.latest .'
+        }
+      }
+    }
+    stage('Docker Push') {
+      steps {
+        container('docker'){
+          withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+            sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+            sh 'docker push xiaog/vke-cluster-register.v2.latest'
           }
         }
       }
     }
-    stage('Build Release') {
-      when {
-        branch 'master'
-      }
+    stage('Deploy to CloudPKS cluster') {
       steps {
-        container('python') {
-
-          // ensure we're not on a detached head
-          sh "git checkout master"
-          sh "git config --global credential.helper store"
-          sh "jx step git credentials"
-
-          // so we can retrieve the version in later steps
-          sh "echo \$(jx-release-version) > VERSION"
-          sh "jx step tag --version \$(cat VERSION)"
-          sh "python -m unittest"
-          sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
-          sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
-        }
-      }
-    }
-    stage('Promote to Environments') {
-      when {
-        branch 'master'
-      }
-      steps {
-        container('python') {
-          dir('./charts/cpks-registration') {
-            sh "jx step changelog --version v\$(cat ../../VERSION)"
-
-            // release the helm chart
-            sh "jx step helm release"
-
-            // promote through all 'Auto' promotion Environments
-            sh "jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
+        container('vke-kubectl'){
+          withCredentials([usernamePassword(credentialsId: 'VCS', usernameVariable: 'orgID', passwordVariable: 'apiToken')]) {
+            sh "vke account login -t ${env.orgID} -r ${env.apiToken}"
+            sh '''
+                 vke cluster merge-kubectl-auth cluster1010101431
+		 kubectl delete deployment vke-app -n vke-app || true
+                 sleep 5
+		 kubectl create -n vke-app -f deployFiles/temp3.yaml
+                 echo "Node Server Launched!"
+            '''
           }
         }
       }
     }
-  }
-  post {
-        always {
-          cleanWs()
-        }
   }
 }
