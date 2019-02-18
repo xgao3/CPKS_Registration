@@ -47,7 +47,7 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname + '/../public/no-registration-failure.html'));
     });
 
-    app.get('/auth/google', passport.authenticate('google',{scope: ['profile']}), (req, res) => {
+    app.get('/auth/github', passport.authenticate('github',{scope: ['profile']}), (req, res) => {
         res.sendFile(path.join(__dirname + '/../public/auth-login.html'));
     })
 
@@ -55,10 +55,10 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname + '/../public/auth-login.html'));
     })
 
-    app.get('/auth/google/callback', function(req, res, next) {
-        passport.authenticate('google', function(err, user) {
-          
-        //if admin isn't in the database
+    app.get('/auth/github/callback', function(req, res, next) {
+        passport.authenticate('github', function(err, user) {          
+
+          //if admin isn't in the database
           if (!user) { 
               console.log('no access to this page')
               return res.redirect('/auth/no-access'); 
