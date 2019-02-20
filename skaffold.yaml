@@ -1,0 +1,12 @@
+apiVersion: skaffold/v1beta5
+kind: Config
+build:
+  artifacts:
+  - image: xiaog/vke-cluster-register.v33
+    context: .
+    sync:
+      '*.js': .
+deploy:
+  kubectl:
+    manifests:
+      - kubernetes/temp3.yaml

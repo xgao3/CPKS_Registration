@@ -39,26 +39,6 @@ app.use(users);
 app.use(getClusters);
 
 
-// Error handler
-//app.use((err, req, res, next) => {
-//  res.statusCode = 500
-  // Do not expose your error in production
-//  res.json({ error: err.message })
-//  next()
-//})
-
-// Runs after each requests
-//app.use((req, res, next) => {
-//  const responseTimeInMs = Date.now() - res.locals.startEpoch
-
-//  httpRequestDurationMicroseconds
-//    .labels(req.method, req.route.path, res.statusCode)
-//    .observe(responseTimeInMs)
-
-//  next()
-//})
-
-
 // listening on port 
 app.listen('1112', () => {
     console.log('Server started on port 1112');
