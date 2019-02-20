@@ -35,7 +35,7 @@ connection.connect(function(err) {
                  token varchar(255))`;      
 
   let createAdmin = `create table if not exists admin(
-                 google_id varchar(255),
+                 github_id varchar(255),
                  name varchar(255))`;
 
   connection.query(createTodos, function(err, results, fields) {

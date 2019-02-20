@@ -1,0 +1,37 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: cpks-app
+  labels:
+    app: cpks-app
+    tier: app-tier
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cpks-app
+  template:
+    metadata:
+      labels:
+        app: cpks-app
+    spec:
+      containers:
+      - name: cpks-app
+        image: xiaog/vke-cluster-register.v33
+        imagePullPolicy: Always 
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: password
+          - name: SQL_HOST
+#            value: mysql.vke-app.svc.cluster.local
+            value: seattle3.cyi426quvsek.us-east-1.rds.amazonaws.com
+          - name: SQL_USER
+            value: root
+          - name: SQL_DB
+            value: seattle
+        ports:
+        - containerPort: 1112
+
